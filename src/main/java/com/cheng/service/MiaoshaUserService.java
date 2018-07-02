@@ -12,7 +12,6 @@ import com.cheng.vo.LoginVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.nio.cs.US_ASCII;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -59,11 +58,12 @@ public class MiaoshaUserService {
         //登录成功之后设置cookie，返回sessionId
         //生成cookie
         String token = UUIDUtil.uuid();
-        redisService.set(MiaoshaUserKey.token, token, user);
+       /* redisService.set(MiaoshaUserKey.token, token, user);
         Cookie cookie = new Cookie(COOKIE_NAME_TOKEN, token);
         cookie.setMaxAge(MiaoshaUserKey.TOKEN_EXPIRE);
         cookie.setPath("/");
-        response.addCookie(cookie);
+        response.addCookie(cookie);*/
+        this.addCookie(response, token, user);
         return true;
     }
 
@@ -75,18 +75,17 @@ public class MiaoshaUserService {
          MiaoshaUser user = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
         //延长cookie时间
         if (user != null) {
-            addCookie(response, user);
+            this.addCookie(response, token, user);
         }
         return user;
     }
 
-    private void addCookie(HttpServletResponse response, MiaoshaUser user) {
-        String token = UUIDUtil.uuid();
+    private void addCookie(HttpServletResponse response, String token, MiaoshaUser user) {
+
         redisService.set(MiaoshaUserKey.token, token, user);
         Cookie cookie = new Cookie(COOKIE_NAME_TOKEN, token);
         cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());
         cookie.setPath("/");
         response.addCookie(cookie);
     }
-
 }

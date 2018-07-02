@@ -23,7 +23,7 @@ public abstract class BasePrefix implements Prefix{
     @Override
     public int expireSeconds() {//0代表永不过期
 
-        return 0;
+        return expireSeconds;
     }
 
     @Override
