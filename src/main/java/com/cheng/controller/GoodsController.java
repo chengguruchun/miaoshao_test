@@ -83,5 +83,9 @@ public class GoodsController {
         return "goods_detail";
     }
 
+   /* @RequestMapping("/do_miaosha")
+    public void do_miaosha() {
+
+    }*/
 
 }

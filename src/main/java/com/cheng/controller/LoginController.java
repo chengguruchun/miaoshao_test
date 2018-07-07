@@ -28,10 +28,10 @@ import javax.validation.Valid;
 public class LoginController {
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
-    RedisService redisService;
+    private RedisService redisService;
 
     @Autowired
-    MiaoshaUserService miaoshaUserService;
+    private MiaoshaUserService miaoshaUserService;
 
     @RequestMapping("/to_login")
     public String toLogin() {

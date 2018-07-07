@@ -1,6 +1,7 @@
 package com.cheng.service;
 
 import com.cheng.dao.GoodsDao;
+import com.cheng.domain.MiaoshaGoods;
 import com.cheng.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,10 @@ public class GoodsService {
     public GoodsVo getGoodsVoByGoodsId(long goodId) {
         return goodsDao.getGoodsVoByGoodsId(goodId);
     }
+    public void reduceStock(GoodsVo goods) {
+        MiaoshaGoods g = new MiaoshaGoods();
+        g.setGoodsId(goods.getId());
+        goodsDao.reduceStock(g);
+    }
+
 }
