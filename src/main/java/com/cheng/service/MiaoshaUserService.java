@@ -31,7 +31,19 @@ public class MiaoshaUserService {
     RedisService redisService;
 
     public MiaoshaUser getByID(long id){
-        return miaoshaUserDao.getById(id);
+        //取缓存
+        MiaoshaUser user = redisService.get(MiaoshaUserKey.getById, "" + id, MiaoshaUser.class);
+        if (user != null) {
+            return user;
+
+        }
+
+        //从数据库取
+        user = miaoshaUserDao.getById(id);
+        if (user != null) {
+            redisService.set(MiaoshaUserKey.getById, "" + id, user);
+        }
+        return user;
     }
 
     public boolean login(HttpServletResponse response, LoginVo vo) {
