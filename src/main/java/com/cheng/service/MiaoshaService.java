@@ -1,8 +1,5 @@
 package com.cheng.service;
 
-import com.cheng.dao.GoodsDao;
-import com.cheng.domain.Goods;
-import com.cheng.domain.MiaoshaOrder;
 import com.cheng.domain.MiaoshaUser;
 import com.cheng.domain.OrderInfo;
 import com.cheng.vo.GoodsVo;

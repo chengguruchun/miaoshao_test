@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MiaoshaController {
     @Autowired
     private RedisService redisService;
+
     @Autowired
     private GoodsService goodsService;
 
