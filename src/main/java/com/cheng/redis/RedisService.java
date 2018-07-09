@@ -136,4 +136,19 @@ public class RedisService {
             return JSON.toJavaObject(JSON.parseObject(str), clazz);
         }
     }
+
+    public boolean delete(Prefix prefix, String s) {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            //生成真正的key
+            String realKEY = prefix.getPrefix() + s;
+            long ret = jedis.del(realKEY);
+            return ret > 0;
+        }finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+    }
 }

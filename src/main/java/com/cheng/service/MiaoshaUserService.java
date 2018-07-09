@@ -46,6 +46,31 @@ public class MiaoshaUserService {
         return user;
     }
 
+    //如何更新缓存
+    //新更新数据库，然后更新redis缓存
+    // http://blog.csdn.net/tTU1EvLDeLFq5btqiK/article/details/78693323
+    public boolean updatePassword(String token, long id, String formPass) {
+        //取user
+        MiaoshaUser user = getByID(id);
+        if (user == null) {
+            throw  new GlobalException(CodeMsg.MOBILE_NOT_EXIST);
+        }
+
+        //更新数据库
+        MiaoshaUser toBeUpdate = new MiaoshaUser();
+        toBeUpdate.setId(id);
+        toBeUpdate.setPassword(MD5Util.formPassToDbPass(formPass, user.getSalt()));
+        miaoshaUserDao.update(toBeUpdate);
+
+        //处理缓存
+        boolean flag = redisService.delete(MiaoshaUserKey.getById, "" + id);
+        redisService.delete(MiaoshaUserKey.token, "" + id);
+
+        user.setPassword(toBeUpdate.getPassword());
+        redisService.set(MiaoshaUserKey.token, token, user);
+        return true;
+    }
+
     public boolean login(HttpServletResponse response, LoginVo vo) {
         if (vo == null)
            throw new GlobalException(CodeMsg.SERVER_ERROR);
