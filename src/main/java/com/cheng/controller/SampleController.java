@@ -1,6 +1,7 @@
 package com.cheng.controller;
 
 import com.cheng.domain.User;
+import com.cheng.rabbitmq.MQSender;
 import com.cheng.redis.RedisService;
 import com.cheng.redis.UserKey;
 import com.cheng.result.Result;
@@ -24,6 +25,37 @@ public class SampleController {
     UserService userService;
     @Autowired
     RedisService redisService;
+    @Autowired
+    MQSender mqSender;
+
+    @RequestMapping("/mq")
+    @ResponseBody
+    public Result<String> mq() {
+        mqSender.send("hello, lcc");
+        return Result.success("hello ,world");
+    }
+
+    @RequestMapping("/mq/topic")
+    @ResponseBody
+    public Result<String> mqTopic() {
+        mqSender.sendTopic("hello, lcc");
+        return Result.success("hello ,world");
+    }
+
+    @RequestMapping("/mq/fanout")
+    @ResponseBody
+    public Result<String> mqFanout() {
+        mqSender.sendFanout("hello, lcc");
+        return Result.success("hello ,world");
+    }
+
+    @RequestMapping("/mq/header")
+    @ResponseBody
+    public Result<String> mqHeader() {
+        mqSender.sendHeader("hello, lcc");
+        return Result.success("hello ,world");
+    }
+
 
     @RequestMapping("/thymeleaf")
     public String thymeleaf(Model model) {

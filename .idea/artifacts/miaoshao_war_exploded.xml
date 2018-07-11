@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="miaoshao_test:war exploded">
+  <artifact type="exploded-war" name="miaoshao:war exploded">
     <output-path>$PROJECT_DIR$/target/miaoshao</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="miaoshao_test" />
+          <element id="module-output" name="miaoshao" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-devtools:1.5.9.RELEASE" />
@@ -51,7 +51,6 @@
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:8.5.23" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:8.5.23" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.13.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:1.3.2" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.6" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.3.2" />
@@ -64,12 +63,22 @@
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.6" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-validation:1.5.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.5.23" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-amqp:1.5.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-messaging:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.amqp:spring-rabbit:1.7.4.RELEASE" />
+          <element id="library" level="project" name="Maven: com.rabbitmq:http-client:1.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.8" />
+          <element id="library" level="project" name="Maven: com.rabbitmq:amqp-client:4.0.3" />
+          <element id="library" level="project" name="Maven: org.springframework.retry:spring-retry:1.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.amqp:spring-amqp:1.7.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.13.RELEASE" />
         </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="miaoshao_test/web/Web" />
+      <element id="javaee-facet-resources" facet="miaoshao/web/Web" />
     </root>
   </artifact>
 </component>
